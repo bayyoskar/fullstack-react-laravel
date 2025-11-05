@@ -1,0 +1,22 @@
+# Umum
+.DS_Store
+Thumbs.db
+
+# Laravel (ubur_ubur)
+ubur_ubur/vendor/
+ubur_ubur/node_modules/
+ubur_ubur/.env
+ubur_ubur/.env.*
+ubur_ubur/storage/*.key
+ubur_ubur/storage/framework/cache/*
+ubur_ubur/storage/framework/sessions/*
+ubur_ubur/storage/framework/views/*
+!ubur_ubur/storage/.gitignore
+ubur_ubur/public/storage
+
+# React (lab_fresh)
+lab_fresh/node_modules/
+lab_fresh/dist/
+lab_fresh/build/
+lab_fresh/.env
+lab_fresh/.env.*

@@ -1,0 +1,143 @@
+/* ============================= */
+/* 🌐 LOGIN PAGE UI (NO REGISTER) */
+/* ============================= */
+
+/* --- Page Layout --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* --- Card Container (2 Panel) --- */
+.cardContainer {
+    display: flex;
+    width: 700px;
+    height: 420px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    background-color: white;
+    transition: 0.5s ease;
+}
+
+/* --- Left Panel (Welcome Info) --- */
+.infoPanel {
+    width: 40%;
+    background: linear-gradient(135deg, #007bff, #0056d6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+    text-align: center;
+}
+
+.infoPanel h3 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.infoPanel p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-top: 0;
+}
+
+/* --- Right Panel (Login Form) --- */
+.formPanel {
+    flex: 1;
+    padding: 35px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+.formPanel h2 {
+    color: #222;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/* --- Input Fields --- */
+.inputGroup {
+    background-color: #f1f1f1;
+    border-radius: 6px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.inputGroup i {
+    font-size: 18px;
+    color: #444;
+    margin-right: 8px;
+}
+
+.inputGroup input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 15px;
+    color: #333;
+}
+
+/* --- Button --- */
+.submitBtn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 17px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.submitBtn:hover {
+    background-color: #005fd1;
+    transform: translateY(-2px);
+}
+
+/* --- Error Message --- */
+.error-msg {
+    background-color: #ffeaea;
+    color: #c40000;
+    padding: 10px;
+    border-left: 4px solid red;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 720px) {
+    .cardContainer {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    .infoPanel {
+        width: 100%;
+        padding: 25px;
+    }
+
+    .formPanel {
+        width: 100%;
+        padding: 25px;
+    }
+}

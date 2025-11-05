@@ -1,0 +1,414 @@
+/* ============================= */
+/* ====== GLOBAL STYLING ======= */
+/* ============================= */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* ============================= */
+/* ===== DASHBOARD LAYOUT ====== */
+/* ============================= */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #0057ff;
+  color: #fff;
+  padding: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard {
+  display: flex;
+  flex: 1;
+  margin: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ============================= */
+/* ========= SIDEBAR =========== */
+/* ============================= */
+
+.sidebar {
+  width: 240px;
+  background-color: #f0f2f5;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.sidebar li:hover {
+  background-color: #dce4ff;
+  transform: translateX(4px);
+}
+
+.sidebar li.active {
+  background-color: #0057ff;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 87, 255, 0.3);
+}
+
+.sidebar li.logout {
+  color: red;
+  font-weight: bold;
+  margin-top: 20px;
+  border: 1px solid red;
+  background-color: #fff0f0;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.sidebar li.logout:hover {
+  background-color: #ffdddd;
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* ===== MAIN CONTENT AREA ===== */
+/* ============================= */
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.main-content h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.main-content p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================= */
+/* ====== TABLE & BUTTONS ===== */
+/* ============================= */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #e0e0e0;
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.data-table th {
+  background-color: #0057ff;
+  color: white;
+  font-weight: 600;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+  background-color: #eef3ff;
+}
+
+/* ============================= */
+/* ========= BUTTONS =========== */
+/* ============================= */
+
+.btn-primary,
+.btn-edit,
+.btn-delete,
+.btn-cancel,
+.btn-view {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 14px;
+  transition: 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0057ff;
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #003ec4;
+}
+
+.btn-edit {
+  background-color: #00b894;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: #019875;
+}
+
+.btn-delete {
+  background-color: #ff3b30;
+  color: white;
+}
+.btn-delete:hover {
+  background-color: #cc2c24;
+}
+
+.btn-cancel {
+  background-color: gray;
+  color: white;
+}
+.btn-cancel:hover {
+  background-color: #444;
+}
+
+.btn-view {
+  background-color: #007aff;
+  color: white;
+}
+.btn-view:hover {
+  background-color: #005bb5;
+  transform: translateY(-1px);
+}
+
+/* ============================= */
+/* 🌟 PROFILE PAGE STYLE ======= */
+/* ============================= */
+
+.profile-page {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 700px;
+  margin: 30px auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profile-header h2 {
+  color: #0057ff;
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.profile-header p {
+  color: #666;
+  font-size: 15px;
+  margin-top: 0;
+}
+
+.profile-form .form-group {
+  margin-bottom: 20px;
+}
+
+.profile-form label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.profile-form input,
+.profile-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background-color: #fafafa;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+  border-color: #0057ff;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 87, 255, 0.2);
+  outline: none;
+}
+
+.profile-form textarea {
+  resize: none;
+  height: 90px;
+}
+
+.save-btn {
+  background-color: #0057ff;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  font-size: 16px;
+  transition: background 0.25s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+.save-btn:hover {
+  background-color: #0042c4;
+  transform: translateY(-2px);
+}
+
+/* ✅ Message alert */
+.profile-message {
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.profile-message.success {
+  background-color: #e8f6ff;
+  color: #0078d7;
+  border-left: 5px solid #0057ff;
+}
+
+.profile-message.error {
+  background-color: #ffeaea;
+  color: #e00000;
+  border-left: 5px solid #ff3b30;
+}
+
+/* ============================= */
+/* ====== VIEW PROFILE PAGE ==== */
+/* ============================= */
+
+.view-profile {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 40px auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.view-profile h2 {
+  color: #0057ff;
+  font-size: 24px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.view-profile p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #555;
+  text-align: center;
+}
+
+.view-profile .form-group {
+  margin-top: 18px;
+}
+
+.view-profile .form-group label {
+  display: block;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.view-profile input,
+.view-profile textarea {
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #444;
+}
+
+.view-profile textarea {
+  resize: none;
+  height: 90px;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .profile-page,
+  .view-profile {
+    padding: 25px;
+    margin: 15px;
+  }
+
+  .save-btn {
+    font-size: 15px;
+    padding: 10px 18px;
+  }
+}
