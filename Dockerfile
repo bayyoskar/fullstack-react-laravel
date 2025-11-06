@@ -18,8 +18,11 @@ WORKDIR /var/www/html
 # Copy Laravel app
 COPY ubur_ubur/ ./
 
-# Create .env if not exists
-RUN if [ ! -f ".env" ]; then cp .env.example .env; fi
+# Create .env if missing
+RUN if [ ! -f ".env" ]; then \
+        if [ -f ".env.example" ]; then cp .env.example .env; \
+        else echo "APP_KEY=" > .env; fi \
+    ; fi
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
