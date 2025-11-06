@@ -18,6 +18,9 @@ WORKDIR /var/www/html
 # Copy Laravel app
 COPY ubur_ubur/ ./
 
+# Create .env if not exists
+RUN if [ ! -f ".env" ]; then cp .env.example .env; fi
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
@@ -25,10 +28,10 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
-# Generate key, clear & cache config
-RUN php artisan key:generate --force \
-    && php artisan config:clear \
-    && php artisan config:cache
+# Generate key & cache config
+RUN php artisan key:generate --force || true \
+    && php artisan config:clear || true \
+    && php artisan config:cache || true
 
 # Set Apache Document Root to /public
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
