@@ -2,35 +2,21 @@
 
 set -e
 
-# Update package list
-apt-get update -y
+echo "🚀 Running Laravel setup in $(pwd)"
 
-# Install PHP dan semua dependencies Laravel
-apt-get install -y php php-cli php-mbstring php-xml php-bcmath php-curl php-zip php-mysql unzip curl git
+# Install dependencies
+apt-get update -y && apt-get install -y curl unzip git php php-cli php-mbstring php-curl php-xml php-bcmath php-zip php-mysql
 
-# Install Composer (global)
+# Install Composer
 curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+php composer.phar install --no-interaction --prefer-dist --optimize-autoloader
 
-# Pastikan folder ubur_ubur ada
-if [ ! -d "ubur_ubur" ]; then
-  echo "❌ Folder ubur_ubur tidak ditemukan!"
-  ls -la
-  exit 1
-fi
-
-# Masuk ke folder Laravel
-cd ubur_ubur
-
-# Install dependency Laravel
-composer install --no-dev --optimize-autoloader --ignore-platform-reqs
-
-# Copy .env kalau belum ada
+# Copy env if needed
 if [ ! -f ".env" ]; then
   cp .env.example .env
 fi
 
-# Generate app key
-php artisan key:generate
+# Generate key
+php artisan key:generate || true
 
 echo "✅ Laravel setup completed successfully!"
