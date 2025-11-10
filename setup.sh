@@ -7,12 +7,13 @@ apt-get install -y php php-cli php-mbstring unzip curl git
 # install composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
+export PATH="$PATH:/usr/local/bin"
 
-# masuk ke folder Laravel
+# pindah ke folder laravel
 cd ubur_ubur
 
-# install dependensi Laravel
-composer install --no-dev --optimize-autoloader
+# install dependency laravel
+php /usr/local/bin/composer install --no-dev --optimize-autoloader
 
 # generate app key
 php artisan key:generate
