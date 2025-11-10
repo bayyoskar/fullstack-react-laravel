@@ -1,22 +1,25 @@
 #!/bin/bash
-
 set -e
 
 echo "🚀 Running Laravel setup in $(pwd)"
 
-# Install dependencies
 apt-get update -y && apt-get install -y curl unzip git php php-cli php-mbstring php-curl php-xml php-bcmath php-zip php-mysql
 
-# Install Composer
+# install composer
 curl -sS https://getcomposer.org/installer | php
+
+echo "📦 Installing dependencies with Composer..."
 php composer.phar install --no-interaction --prefer-dist --optimize-autoloader
 
-# Copy env if needed
+echo "🧩 Checking if .env exists..."
 if [ ! -f ".env" ]; then
   cp .env.example .env
 fi
 
-# Generate key
+echo "🔑 Generating app key..."
 php artisan key:generate || true
 
-echo "✅ Laravel setup completed successfully!"
+echo "📂 Files in current directory:"
+ls -lah
+
+echo "✅ Setup done!"
