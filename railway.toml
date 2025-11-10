@@ -1,4 +1,4 @@
 [build]
 builder = "nixpacks"
-buildCommand = "cd ubur_ubur && curl -sS https://getcomposer.org/installer | php && php composer.phar install && php artisan key:generate"
+buildCommand = "cd ubur_ubur && curl -sS https://getcomposer.org/installer | php -- --install-dir=/tmp && php /tmp/composer.phar install && php artisan key:generate"
 startCommand = "cd ubur_ubur && php artisan serve --host=0.0.0.0 --port=8000"
