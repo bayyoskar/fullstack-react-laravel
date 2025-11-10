@@ -1,14 +1,23 @@
 #!/bin/bash
 
+set -e
+
 # Update package list
 apt-get update -y
 
-# Install PHP dan dependency Laravel
+# Install PHP dan semua dependencies Laravel
 apt-get install -y php php-cli php-mbstring php-xml php-bcmath php-curl php-zip php-mysql unzip curl git
 
-# Install Composer
+# Install Composer (global)
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
+
+# Pastikan folder ubur_ubur ada
+if [ ! -d "ubur_ubur" ]; then
+  echo "❌ Folder ubur_ubur tidak ditemukan!"
+  ls -la
+  exit 1
+fi
 
 # Masuk ke folder Laravel
 cd ubur_ubur
@@ -16,7 +25,7 @@ cd ubur_ubur
 # Install dependency Laravel
 composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# Generate .env kalau belum ada
+# Copy .env kalau belum ada
 if [ ! -f ".env" ]; then
   cp .env.example .env
 fi
