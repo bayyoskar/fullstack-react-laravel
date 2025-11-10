@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+// ✅ Auto pilih baseURL berdasarkan environment (local atau production)
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api', // langsung ke Laravel backend
+  baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
