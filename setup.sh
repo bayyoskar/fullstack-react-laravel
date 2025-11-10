@@ -1,19 +1,21 @@
 #!/bin/bash
 
-# install dependencies
+# Update package list
 apt-get update -y
-apt-get install -y php php-cli php-mbstring unzip curl git
 
-# install composer
+# Install PHP + dependencies yang lengkap
+apt-get install -y php php-cli php-mbstring php-xml php-bcmath php-curl php-zip php-mysql unzip curl git
+
+# Install Composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 export PATH="$PATH:/usr/local/bin"
 
-# pindah ke folder laravel
+# Masuk ke folder Laravel
 cd ubur_ubur
 
-# install dependency laravel
-php /usr/local/bin/composer install --no-dev --optimize-autoloader
+# Install dependency Laravel
+php /usr/local/bin/composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# generate app key
+# Generate app key
 php artisan key:generate
