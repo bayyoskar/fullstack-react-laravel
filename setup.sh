@@ -3,10 +3,10 @@
 # Update package list
 apt-get update -y
 
-# Install PHP + dependencies yang lengkap (wajib buat Laravel)
+# Install PHP dan semua dependencies penting untuk Laravel
 apt-get install -y php php-cli php-mbstring php-xml php-bcmath php-curl php-zip php-mysql unzip curl git
 
-# Install Composer (global)
+# Install Composer secara global
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 export PATH="$PATH:/usr/local/bin"
@@ -14,10 +14,10 @@ export PATH="$PATH:/usr/local/bin"
 # Masuk ke folder Laravel
 cd ubur_ubur
 
-# Install semua dependency Laravel
+# Install semua dependency Laravel (tanpa dev)
 php /usr/local/bin/composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# Copy .env.example ke .env kalau belum ada
+# Jika file .env belum ada, buat dari .env.example
 if [ ! -f ".env" ]; then
   cp .env.example .env
 fi

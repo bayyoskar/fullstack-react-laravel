@@ -3,4 +3,4 @@ builder = "nixpacks"
 buildCommand = "bash setup.sh"
 
 [start]
-startCommand = "cd ubur_ubur && php ./artisan serve --host=0.0.0.0 --port=$PORT"
+startCommand = "php ./ubur_ubur/artisan serve --host=0.0.0.0 --port=$PORT"
