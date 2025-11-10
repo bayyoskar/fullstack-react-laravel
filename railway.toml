@@ -1,7 +1,6 @@
 [build]
 builder = "nixpacks"
 buildCommand = "bash setup.sh"
-workdir = "ubur_ubur"
 
 [start]
-startCommand = "php artisan serve --host=0.0.0.0 --port=$PORT"
+startCommand = "cd /app/ubur_ubur && php artisan serve --host=0.0.0.0 --port=$PORT"
