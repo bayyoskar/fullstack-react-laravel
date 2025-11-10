@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ActivityLogController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ use App\Http\Controllers\ActivityLogController;
 
 // 🟢 Public (tanpa login)
 Route::post('/login', [AuthController::class, 'login']);
+
+// 🔹 Route test utama (biar /api nggak 404)
+Route::get('/', function () {
+    return response()->json(['message' => 'Laravel API is running! 🚀']);
+});
 
 // 🟡 Protected (wajib login)
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -45,8 +51,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/activity-logs', [ActivityLogController::class, 'index']);
     });
 });
-
-use Illuminate\Support\Facades\DB;
 
 // 🔍 Test koneksi database di Railway
 Route::get('/db-test', function () {
