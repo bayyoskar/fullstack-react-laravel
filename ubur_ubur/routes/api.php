@@ -45,3 +45,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/activity-logs', [ActivityLogController::class, 'index']);
     });
 });
+
+use Illuminate\Support\Facades\DB;
+
+// 🔍 Test koneksi database di Railway
+Route::get('/db-test', function () {
+    try {
+        DB::connection()->getPdo();
+        $dbName = DB::connection()->getDatabaseName();
+        return response()->json([
+            'success' => true,
+            'message' => "Database connected successfully: {$dbName}"
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => "Database connection failed: " . $e->getMessage()
+        ]);
+    }
+});
