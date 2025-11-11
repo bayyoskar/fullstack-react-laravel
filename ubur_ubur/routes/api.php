@@ -6,13 +6,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ActivityLogController;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes (no register)
+| API Routes
 |--------------------------------------------------------------------------
 | Semua route API pakai Sanctum Bearer token.
-| Register DIHAPUS TOTAL. Login-only.
+| Register dihapus total — hanya login.
 */
 
 // 🟢 Public (tanpa login)
@@ -23,36 +24,7 @@ Route::get('/', function () {
     return response()->json(['message' => 'Laravel API is running! 🚀']);
 });
 
-// 🟡 Protected (wajib login)
-Route::middleware(['auth:sanctum'])->group(function () {
-
-    // Logout
-    Route::post('/logout', [AuthController::class, 'logout']);
-
-    // Profile (lihat & update profil sendiri)
-    Route::get('/profile', [ProfileController::class, 'show']);
-    Route::put('/profile', [ProfileController::class, 'update']);
-
-    // Lihat profil user lain (admin & super admin)
-    Route::middleware(['role:admin,super_admin'])
-        ->get('/profiles/{user_id}', [ProfileController::class, 'viewUserProfile']);
-
-    // Admin & Super Admin: CRUD users (admin hanya user, super admin bisa user & admin)
-    Route::middleware(['role:admin,super_admin'])->group(function () {
-        Route::get   ('/admin/users',        [AdminUserController::class, 'index']);
-        Route::get   ('/admin/users/{id}',   [AdminUserController::class, 'show']);
-        Route::post  ('/admin/users',        [AdminUserController::class, 'store']);   // password dimasukkan manual
-        Route::put   ('/admin/users/{id}',   [AdminUserController::class, 'update']);
-        Route::delete('/admin/users/{id}',   [AdminUserController::class, 'destroy']);
-    });
-
-    // Super Admin only: Activity Logs
-    Route::middleware(['role:super_admin'])->group(function () {
-        Route::get('/activity-logs', [ActivityLogController::class, 'index']);
-    });
-});
-
-// 🔍 Test koneksi database di Railway
+// 🔹 Route test koneksi database (buat Railway)
 Route::get('/db-test', function () {
     try {
         DB::connection()->getPdo();
@@ -67,4 +39,38 @@ Route::get('/db-test', function () {
             'message' => "Database connection failed: " . $e->getMessage()
         ]);
     }
+});
+
+// 🔹 Route test ambil semua user (sementara public, buat testing)
+Route::get('/users', function () {
+    return response()->json(\App\Models\User::all());
+});
+
+// 🟡 Protected (wajib login pakai Sanctum)
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    // Profile (lihat & update profil sendiri)
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::put('/profile', [ProfileController::class, 'update']);
+
+    // Lihat profil user lain (admin & super admin)
+    Route::middleware(['role:admin,super_admin'])
+        ->get('/profiles/{user_id}', [ProfileController::class, 'viewUserProfile']);
+
+    // Admin & Super Admin: CRUD users
+    Route::middleware(['role:admin,super_admin'])->group(function () {
+        Route::get   ('/admin/users',        [AdminUserController::class, 'index']);
+        Route::get   ('/admin/users/{id}',   [AdminUserController::class, 'show']);
+        Route::post  ('/admin/users',        [AdminUserController::class, 'store']);
+        Route::put   ('/admin/users/{id}',   [AdminUserController::class, 'update']);
+        Route::delete('/admin/users/{id}',   [AdminUserController::class, 'destroy']);
+    });
+
+    // Super Admin only: Activity Logs
+    Route::middleware(['role:super_admin'])->group(function () {
+        Route::get('/activity-logs', [ActivityLogController::class, 'index']);
+    });
 });
